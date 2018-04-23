@@ -11,4 +11,5 @@ Restful API (including data model and the backing implementation) for money tran
 # TODO #
 
 * applay thread safe transaction
+* change user-account relation from 1:1 -> 1:n
 * applay logger
