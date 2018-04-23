@@ -27,9 +27,8 @@ public class TransferEndpoint {
 
 	@POST
 	@Path("/save")
-	public Response transfer(Transfer transfer) {
-		transferFacade.save(transfer);
-		return Response.status(Response.Status.OK).build();
+	public Transfer transfer(Transfer transfer) {
+		return transferFacade.save(transfer);
 	}
 
 	@GET

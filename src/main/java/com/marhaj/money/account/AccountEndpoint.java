@@ -54,5 +54,4 @@ public class AccountEndpoint {
 		}
 		return Response.status(Response.Status.OK).build();
 	}
-
 }
