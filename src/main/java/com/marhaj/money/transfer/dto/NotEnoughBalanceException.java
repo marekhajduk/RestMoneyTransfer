@@ -2,7 +2,7 @@ package com.marhaj.money.transfer.dto;
 
 import java.math.BigDecimal;
 
-import com.marhaj.money.account.dto.Account;
+import com.marhaj.money.account.Account;
 
 public class NotEnoughBalanceException extends RuntimeException {
 	public NotEnoughBalanceException(Account account, BigDecimal amount) {

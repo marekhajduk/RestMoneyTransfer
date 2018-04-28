@@ -14,7 +14,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.marhaj.money.BaseEndpoint;
-import com.marhaj.money.account.dto.Account;
 import com.marhaj.money.user.UserEndpointTest;
 import com.marhaj.money.user.dto.User;
 
