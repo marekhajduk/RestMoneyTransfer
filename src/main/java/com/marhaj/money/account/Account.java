@@ -1,7 +1,7 @@
 package com.marhaj.money.account;
 
 import java.math.BigDecimal;
-import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,11 +14,11 @@ import lombok.Setter;
 
 @Data
 @AllArgsConstructor(access=AccessLevel.PACKAGE)
-@NoArgsConstructor
+@NoArgsConstructor(access=AccessLevel.PACKAGE)
 public class Account {
 	@JsonIgnore
 	@Setter(AccessLevel.NONE)
-	private Lock lock;
+	private ReentrantLock lock;
 	
 	@JsonProperty(required=true)
 	private String user;

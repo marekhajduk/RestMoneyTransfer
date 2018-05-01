@@ -7,4 +7,5 @@ import com.marhaj.money.transfer.dto.Transfer;
 interface TransferRepository {
 	Transfer save(Transfer transfer);
 	List<Transfer> findAll();
+	void delete();
 }

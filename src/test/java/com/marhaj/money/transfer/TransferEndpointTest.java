@@ -39,6 +39,7 @@ public class TransferEndpointTest extends BaseEndpoint {
 		deleteEntity("/account/" + userNameB);
 		deleteEntity("/user/" + userNameA);
 		deleteEntity("/user/" + userNameB);
+		deleteEntity("/transfer");
 	}
 
 	@Test

@@ -6,6 +6,7 @@ import java.util.Objects;
 import com.google.common.util.concurrent.CycleDetectingLockFactory;
 import com.google.common.util.concurrent.CycleDetectingLockFactory.Policies;
 
+//  Skip of using due to race condition in checkAcquiredLock of LockGraphNode class.
 class CyclicDetectAccountDecorator implements AccountDecorator {
 	private static CycleDetectingLockFactory factory = CycleDetectingLockFactory.newInstance(Policies.THROW);
 

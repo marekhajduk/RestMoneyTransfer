@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import javax.swing.plaf.SliderUI;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -71,8 +74,8 @@ public abstract class BaseEndpoint {
 	@AfterClass
 	public static void close() throws Exception {
 		HttpClientUtils.closeQuietly(client);
-		// server.stop();
-		// server.destroy();
+//		server.stop();
+//		server.destroy();
 	}
 
 	protected static void deleteEntity(String path) throws URISyntaxException, ClientProtocolException, IOException {

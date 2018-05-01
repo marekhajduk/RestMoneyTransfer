@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import com.marhaj.money.user.UserFacade;
 
@@ -14,7 +15,11 @@ public class AccountFacade {
 	private UserFacade userFacade;
 
 	public AccountFacade() {
-		this(new CyclicDetectAccountDecorator(), new InMemoryAccountRepository(), new UserFacade());
+		this(new ReentrantLockAccountDecorator(), new InMemoryAccountRepository(), new UserFacade());
+	}
+
+	public AccountFacade(UserFacade userFacade) {
+		this(new ReentrantLockAccountDecorator(), new InMemoryAccountRepository(), userFacade);
 	}
 
 	public AccountFacade(AccountDecorator accountDecorator, AccountRepository accountRepository) {
@@ -32,20 +37,21 @@ public class AccountFacade {
 		requireNonNull(account);
 		requireNonNull(userFacade.user(account.getUser()));
 		Account decorateAccount = accountDecorator.decorate(account);
-		Lock lock = decorateAccount.getLock();
-		lock.lock();
+		ReentrantLock lock = decorateAccount.getLock();
+		
+		boolean heldByCurrentThread = lock.isHeldByCurrentThread();
+		if (false == heldByCurrentThread) lock.lock();
+		
 		accountRepository.save(decorateAccount);
-		lock.unlock();
+
+		if (false == heldByCurrentThread) lock.unlock();
+		
 		return decorateAccount;
 	}
 
 	public void delete(String... names) {
 		requireNonNull(names);
-		Arrays.stream(names).map(name -> account(name)).parallel().forEach(account -> {
-			Lock lock = account.getLock();
-			accountRepository.delete(account.getUser());
-			lock.unlock();
-		});
+		Arrays.stream(names).forEach(accountRepository::delete);
 	}
 
 	public Account account(String userName) {
