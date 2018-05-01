@@ -2,6 +2,7 @@ package com.marhaj.money.transfer;
 
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -36,4 +37,15 @@ public class TransferEndpoint {
 	public List<Transfer> transfers() {
 		return transferFacade.transfers();
 	}
+	
+	@DELETE
+	public Response delete() {
+		try {
+			transferFacade.delete();
+		} catch (Exception e) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+		return Response.status(Response.Status.OK).build();
+	}
+	
 }

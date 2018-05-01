@@ -11,8 +11,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.marhaj.money.account.dto.Account;
-
 @Path("/account")
 @Produces(MediaType.APPLICATION_JSON)
 public class AccountEndpoint {

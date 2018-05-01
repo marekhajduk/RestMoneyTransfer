@@ -2,6 +2,7 @@ package com.marhaj.money.transfer;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
@@ -21,4 +22,7 @@ class InMemoryTransferRepository implements TransferRepository {
 		return map.values().stream().map(x -> (Transfer) x).collect(Collectors.toList());
 	}
 
+	public void delete() {
+		map.clear();
+	}
 }
